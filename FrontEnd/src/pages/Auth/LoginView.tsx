@@ -39,13 +39,11 @@ export default function LoginView() {
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">
-      <div className=" flex p-5 h-1/5 md:w-1/4">
-      </div>
-
+      <div className=" flex p-5 h-1/5 md:w-1/4"/>
       <Form
         validationBehavior="native"
         onSubmit={handleSubmit(handleRegister)}
-        className="flex flex-col items-center w-full h-full bg-white rounded-tl-[140px] p-10 gap-5"
+        className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
       >
         <h1 className={title()}>Ingrese sus datos</h1>
         <h2 className={subtitle()}>Template, contiene login y dashboard.</h2>
@@ -91,14 +89,14 @@ export default function LoginView() {
 
         <nav className="mt-10 flex flex-col space-y-4">
           <Link
-            to={"/user/register"}
+            to={"/auth/accountRegister"}
             className="text-center text-gray-400 font-normal"
           >
             Crear Cuenta
           </Link>
 
           <Link
-            to={"/user/requestChangePassword"}
+            to={"/auth/accountChangePassword"}
             className="text-center text-gray-400 font-normal"
           >
             ¿Olvidaste tu contraseña? Reestablecer

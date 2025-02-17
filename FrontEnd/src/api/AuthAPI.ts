@@ -2,16 +2,15 @@ import api from "../lib/axios";
 // import {isAxiosError} from "axios";
 import {
   UserRegistrationForm,
+  ConfirmToken,
+  RequestConfirmationCodeForm,
   UserLoginForm,
 } from "../types";
 
 export async function loginAccount(formData: UserLoginForm) {
   try {
-    console.log(formData)
-
     const url = "/user/login";
     const { data } = await api.post<string>(url, formData);
-    console.log(data)
     localStorage.setItem('AUTH_TOKEN_LOGIN', data)
     return data;
   } catch (error : any) {
@@ -25,8 +24,6 @@ export async function loginAccount(formData: UserLoginForm) {
 
 export async function createAccount(formData: UserRegistrationForm) {
   try {
-    console.log(formData)
-
     const url = "/user/registerAccount";
     const { data } = await api.post<string>(url, formData);
     return data;
@@ -37,3 +34,34 @@ export async function createAccount(formData: UserRegistrationForm) {
     throw error;
   }
 }
+
+
+// Change Password
+export async function requestChangeToken(
+  formData: RequestConfirmationCodeForm
+) {
+  try {
+    const url = "/user/requestTokenChangePassword";
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    // if (isAxiosError(error)) {
+    //   return error.response?.data;
+    // }
+    throw error;
+  }
+}
+
+export async function confirmChangePassword(formData: ConfirmToken) {
+  try {
+    const url = "/user/confirmChangePassword";
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    // if (isAxiosError(error)) {
+    //   return error.response?.data;
+    // }
+    throw error;
+  }
+}
+
