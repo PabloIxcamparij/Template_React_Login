@@ -35,6 +35,32 @@ export async function createAccount(formData: UserRegistrationForm) {
   }
 }
 
+export async function requestToken(formData: RequestConfirmationCodeForm) {
+  try {
+    const url = "/user/requestToken";
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    // if (isAxiosError(error)) {
+    //   return error.response?.data;
+    // }
+    throw error;
+  }
+}
+
+export async function confirmAccount(formData: ConfirmToken) {
+  try {
+    const url = "/user/confirmAccount";
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    // if (isAxiosError(error)) {
+    //   return error.response?.data;
+    // }
+    throw error;
+  }
+}
+
 
 // Change Password
 export async function requestChangeToken(

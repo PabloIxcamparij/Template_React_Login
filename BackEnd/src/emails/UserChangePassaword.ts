@@ -13,7 +13,7 @@ export class UserChangePassaword {
       text: `Hola, 
     
 Usted ha solicitado un cambio de contraseña en nuestra plataforma. 
-Por favor usando este ${user.token} para verificar su cuenta al ingresarlo en el siguiente enlace: ${process.env.FRONTEND_URL}/user/changePassword
+Por favor usando este ${user.token} para verificar su cuenta al ingresarlo en el siguiente enlace: ${process.env.FRONTEND_URL}/auth/accountChangePasswordConfirmation
 
 Si no solicitaste este correo, por favor ignóralo.
     

@@ -97,11 +97,19 @@ export default function LoginView() {
           </Link>
 
           <Link
+            to={"/auth/accountNewToken"}
+            className="text-center text-gray-400 font-normal"
+          >
+            ¿Necesita un nuevo token? Solicitar
+          </Link>
+
+          <Link
             to={"/auth/accountChangePassword"}
             className="text-center text-gray-400 font-normal"
           >
             ¿Olvidaste tu contraseña? Reestablecer
           </Link>
+
         </nav>
       </Form>
     </div>

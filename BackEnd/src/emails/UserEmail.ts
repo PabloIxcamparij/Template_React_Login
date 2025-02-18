@@ -13,7 +13,7 @@ export class UserEmail {
       text: `Hola, 
     
 Gracias por registrarte en nuestra plataforma. 
-Por favor usando este ${user.token} verifique su cuenta usando el siguiente enlace: ${process.env.FRONTEND_URL}/user/confirm
+Por favor usando este ${user.token} verifique su cuenta usando el siguiente enlace: ${process.env.FRONTEND_URL}/auth/accountRegisterConfirmation
 
 Si no solicitaste este correo, por favor ignóralo.
     
@@ -30,7 +30,7 @@ El equipo de Registro de Cuenta`,
 
           <p style="text-align: center;">
             <a 
-              href="${process.env.FRONTEND_URL}/user/confirm" 
+              href="${process.env.FRONTEND_URL}/auth/accountRegisterConfirmation" 
               style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;"
             >
               Verificar Cuenta

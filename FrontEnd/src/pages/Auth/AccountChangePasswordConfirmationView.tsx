@@ -15,8 +15,7 @@ export default function AccountChangePasswordConfirmationView() {
 
   const { register, handleSubmit, setValue, watch } =
     useForm<ChangePasswordConfirmation>();
-
-  const password = watch("password");
+  
   const { mutate } = useMutation({
     mutationFn: confirmChangePassword,
     onError: (error: any) => {
@@ -34,6 +33,9 @@ export default function AccountChangePasswordConfirmationView() {
     mutate(formData);
   };
 
+  const password = watch("password");
+
+
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">
       <div className=" flex p-5 h-1/5 md:w-1/4" />
@@ -43,9 +45,9 @@ export default function AccountChangePasswordConfirmationView() {
         className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
       >
         <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
-          <h1 className={title()}>Cmabio de contraseña</h1>
+          <h1 className={title()}>Cambio de contraseña</h1>
           <h2 className={subtitle()}>
-            Ingresa una nueva contraseña t el código que recibio por e-mail
+            Ingresa una nueva contraseña y el código que recibio por e-mail
           </h2>
         </div>
 
