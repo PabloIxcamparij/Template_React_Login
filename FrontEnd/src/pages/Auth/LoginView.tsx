@@ -1,7 +1,7 @@
 // Own
 import { loginAccount } from "../../api/AuthAPI";
 import { UserLoginForm } from "../../types/index";
-import { title, subtitle } from "@/components/primitives";
+import { title, subtitle} from "@/components/primitives";
 
 // Libraries
 import { toast } from "react-toastify";
@@ -40,20 +40,18 @@ export default function LoginView() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">
-      <div className=" flex p-5 h-1/5 md:w-1/4" />
       <Form
         validationBehavior="native"
         onSubmit={handleSubmit(handleRegister)}
-        className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
+        className="flex flex-col items-center w-full gap-5"
       >
-        <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
+        <div className="flex flex-col justify-center items-center w-full ml-5 gap-5">
           <h1 className={title()}>Ingrese sus datos</h1>
           <h2 className={subtitle()}>Template, contiene login y dashboard.</h2>
         </div>
         <Input
           isRequired
-          size="md"
+          size="lg"
           variant="underlined"
           id="email"
           type="email"
@@ -66,7 +64,7 @@ export default function LoginView() {
 
         <Input
           isRequired
-          size="md"
+          size="lg"
           variant="underlined"
           id="password"
           label="Contraseña"
@@ -85,7 +83,7 @@ export default function LoginView() {
           type="submit"
           variant="ghost"
           color="primary"
-          className="w-full text-lg font-bold"
+          className="w-full text-lg font-semibold"
         >
           Login
         </Button>
@@ -114,6 +112,6 @@ export default function LoginView() {
 
         </nav>
       </Form>
-    </div>
+
   );
 }

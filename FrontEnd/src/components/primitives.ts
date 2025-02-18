@@ -51,3 +51,27 @@ export const subtitle = tv({
     fullWidth: true,
   },
 });
+
+export const layoutContainer = tv({
+  base: "flex flex-col md:flex-row h-screen transition-colors",
+  variants: {
+    theme: {
+      light: "bg-gradient-to-b from-[#87c1ff] to-[#0072F5]",
+      dark: "bg-gradient-to-b from-[#1e1e1e] to-[#111111]",
+    },
+  },
+});
+
+export const sidebar = tv({
+  base: "flex p-5 h-1/6 lg:w-1/2",
+});
+
+export const contentContainer = tv({
+  base: "bg-white flex flex-col items-center w-full h-full rounded-tl-[120px] p-8 transition-colors",
+  variants: {
+    theme: {
+      light: "bg-white text-black",
+      dark: "bg-[#303030] text-white",
+    },
+  },
+});

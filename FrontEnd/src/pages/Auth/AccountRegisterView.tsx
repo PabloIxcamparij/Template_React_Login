@@ -39,12 +39,10 @@ export default function AccountRegisterView() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">
-      <div className=" flex p-5 h-1/5 md:w-1/4" />
-      <Form
+    <Form
         validationBehavior="native"
         onSubmit={handleSubmit(handleRegister)}
-        className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
+        className="flex flex-col items-center w-full gap-5"
       >
         <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
           <h1 className={title()}>Ingrese sus datos</h1>
@@ -130,6 +128,5 @@ export default function AccountRegisterView() {
           ¿Ya tienes una cuenta?
         </Link>
       </Form>
-    </div>
   );
 }
