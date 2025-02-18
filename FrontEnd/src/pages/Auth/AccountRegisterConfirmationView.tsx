@@ -4,30 +4,28 @@ import { ConfirmToken } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Form, Button, InputOtp } from "@heroui/react";
 import { Link } from "react-router-dom";
 
 export default function AccountRegisterConfirmationView() {
-
-  const {handleSubmit, setValue } =
-    useForm<ConfirmToken>();
+  const { handleSubmit, setValue } = useForm<ConfirmToken>();
 
   const { mutate } = useMutation({
     mutationFn: confirmAccount,
     onError: (error: any) => {
-      console.log(error.message);
+      toast.error(error.message);
     },
     onSuccess: (data) => {
-      console.log(data);
+      toast.success(data);
     },
   });
 
-  
-    const onSubmit = (formData: ConfirmToken) => {
-      mutate(formData);
-    };
+  const onSubmit = (formData: ConfirmToken) => {
+    mutate(formData);
+  };
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">

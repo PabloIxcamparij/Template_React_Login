@@ -4,6 +4,7 @@ import { UserLoginForm } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -24,9 +25,10 @@ export default function LoginView() {
   const { mutate } = useMutation({
     mutationFn: loginAccount,
     onError: (error: any) => {
-      console.error("Error al logiarse: ", error.message);
+      toast.error(error.message || "Error en el login");
     },
     onSuccess: () => {
+      toast.success("Iniciando Sesion");
       setTimeout(() => {
         navigate("/");
       }, 2000);

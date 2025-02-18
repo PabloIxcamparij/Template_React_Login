@@ -4,6 +4,7 @@ import { RequestConfirmationCodeForm } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -19,10 +20,10 @@ export default function AccountNewTokenRequestView() {
   const { mutate } = useMutation({
     mutationFn: requestToken,
     onError: (error: any) => {
-      console.error("Error al logiarse: ", error.message);
+      toast.error(error.message);
     },
     onSuccess: (data) => {
-      console.log(data);
+      toast.success(data);
     },
   });
 

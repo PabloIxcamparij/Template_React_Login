@@ -4,6 +4,7 @@ import { ChangePasswordConfirmation } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -19,11 +20,11 @@ export default function AccountChangePasswordConfirmationView() {
   const { mutate } = useMutation({
     mutationFn: confirmChangePassword,
     onError: (error: any) => {
-      console.log(error.message);
+      toast.error(error.message);
       setIsSubmitting(false);
     },
     onSuccess: (data) => {
-      console.log(data);
+      toast.success(data);
       setIsSubmitting(false);
     },
   });

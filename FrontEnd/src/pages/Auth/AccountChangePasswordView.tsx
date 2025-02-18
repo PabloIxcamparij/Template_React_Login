@@ -4,6 +4,7 @@ import { requestChangeToken } from "../../api/AuthAPI";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -22,10 +23,10 @@ export default function AccountChangePasswordView() {
   const { mutate } = useMutation({
     mutationFn: requestChangeToken,
     onError: (error: any) => {
-      console.log(error.message);
+      toast.error(error.message);
     },
     onSuccess: (data) => {
-      console.log(data);
+      toast.success(data);
     },
   });
 

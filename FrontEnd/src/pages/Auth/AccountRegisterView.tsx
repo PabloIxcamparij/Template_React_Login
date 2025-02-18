@@ -4,6 +4,7 @@ import { UserRegistrationForm } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Form, Input, Button } from "@heroui/react";
@@ -24,10 +25,10 @@ export default function AccountRegisterView() {
   const { mutate } = useMutation({
     mutationFn: createAccount,
     onError: (error: any) => {
-      console.error("Error al registrar: ", error.message);
+      toast.error(error.message);
     },
-    onSuccess: () => {
-      console.log("Registro exitoso");
+    onSuccess: (data) => {
+      toast.success(data);
     },
   });
 
