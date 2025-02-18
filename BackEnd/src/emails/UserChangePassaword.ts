@@ -30,7 +30,7 @@ El equipo de Registro de Cuenta`,
 
           <p style="text-align: center;">
             <a 
-              href="${process.env.FRONTEND_URL}/user/changePassword" 
+              href="${process.env.FRONTEND_URL}/auth/accountChangePasswordConfirmation" 
               style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;"
             >
               Cambiar Contraseña

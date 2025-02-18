@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { Form, Input, Button } from "@heroui/react";
 
-export default function AccountChangePassword() {
+export default function AccountChangePasswordView() {
   const initialValues: RequestConfirmationCodeForm = {
     email: "",
   };
@@ -41,10 +41,12 @@ export default function AccountChangePassword() {
         onSubmit={handleSubmit(handleRequestCode)}
         className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
       >
+        <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
         <h1 className={title()}>Solicitar un Cambio de Contraseña</h1>
         <h2 className={subtitle()}>
           Coloca tu e-mail para comenzar el proceso
         </h2>
+        </div>
 
         <Input
           isRequired

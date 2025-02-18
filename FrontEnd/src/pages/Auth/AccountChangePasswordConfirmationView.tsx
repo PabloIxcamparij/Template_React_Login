@@ -1,39 +1,36 @@
 // Own
-import { createAccount } from "../../api/AuthAPI";
-import { UserRegistrationForm } from "../../types/index";
+import { confirmChangePassword } from "../../api/AuthAPI";
+import { ChangePasswordConfirmation } from "../../types/index";
 import { title, subtitle } from "@/components/primitives";
 
 // Libraries
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { Form, Input, Button } from "@heroui/react";
+import { Form, Input, Button, InputOtp } from "@heroui/react";
 import { Link } from "react-router-dom";
 
-export default function AccountRegisterView() {
-  const initialValues: UserRegistrationForm = {
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-  };
+export default function AccountChangePasswordConfirmationView() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { handleSubmit, register, watch } = useForm<UserRegistrationForm>({
-    defaultValues: initialValues,
-  });
-
-  const { mutate } = useMutation({
-    mutationFn: createAccount,
-    onError: (error: any) => {
-      console.error("Error al registrar: ", error.message);
-    },
-    onSuccess: () => {
-      console.log("Registro exitoso");
-    },
-  });
+  const { register, handleSubmit, setValue, watch } =
+    useForm<ChangePasswordConfirmation>();
 
   const password = watch("password");
+  const { mutate } = useMutation({
+    mutationFn: confirmChangePassword,
+    onError: (error: any) => {
+      console.log(error.message);
+      setIsSubmitting(false);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      setIsSubmitting(false);
+    },
+  });
 
-  const handleRegister = (formData: UserRegistrationForm) => {
+  const onSubmit = (formData: ChangePasswordConfirmation) => {
+    setIsSubmitting(true);
     mutate(formData);
   };
 
@@ -42,42 +39,15 @@ export default function AccountRegisterView() {
       <div className=" flex p-5 h-1/5 md:w-1/4" />
       <Form
         validationBehavior="native"
-        onSubmit={handleSubmit(handleRegister)}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
       >
         <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
-          <h1 className={title()}>Ingrese sus datos</h1>
-          <h2 className={subtitle()}>Template, contiene login y dashboard.</h2>
+          <h1 className={title()}>Cmabio de contraseña</h1>
+          <h2 className={subtitle()}>
+            Ingresa una nueva contraseña t el código que recibio por e-mail
+          </h2>
         </div>
-        <Input
-          isRequired
-          size="md"
-          variant="underlined"
-          id="email"
-          type="email"
-          label="Email"
-          labelPlacement="inside"
-          placeholder="Enter your email"
-          errorMessage={"El Email es necesario"}
-          {...register("email")}
-        />
-
-        <Input
-          isRequired
-          size="md"
-          variant="underlined"
-          id="name"
-          type="text"
-          label="Nombre"
-          labelPlacement="inside"
-          placeholder="Ingrese un Nombre"
-          {...register("name")}
-          validate={(value) => {
-            if (value.length < 3) {
-              return "El Nombre debe ser mayor a 3 characteres";
-            }
-          }}
-        />
 
         <Input
           isRequired
@@ -116,17 +86,30 @@ export default function AccountRegisterView() {
           }}
         />
 
+        <InputOtp
+          variant="bordered"
+          color="primary"
+          length={6}
+          onValueChange={(value) => setValue("token", value)}
+          validate={(value) => {
+            if (value.length < 6) {
+                return "Debe ser mayor a 6 characteres";
+            }
+          }}
+        />
+
         <Button
           type="submit"
           variant="ghost"
           color="primary"
           className="w-full text-lg font-bold"
+          disabled={isSubmitting}
         >
-          Login
+          {isSubmitting ? "Cambiando contraseña..." : "Confirmar"}
         </Button>
 
-        <Link to={"/login"} className="text-center text-gray-400 font-normal">
-          ¿Ya tienes una cuenta?
+        <Link to="/login" className="text-center text-gray-300 font-normal">
+          ¿Ya tienes cuenta? Iniciar Sesión
         </Link>
       </Form>
     </div>

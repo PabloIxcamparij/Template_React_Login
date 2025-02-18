@@ -39,15 +39,16 @@ export default function LoginView() {
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-b from-[#87c1ff] to-[#0072F5]">
-      <div className=" flex p-5 h-1/5 md:w-1/4"/>
+      <div className=" flex p-5 h-1/5 md:w-1/4" />
       <Form
         validationBehavior="native"
         onSubmit={handleSubmit(handleRegister)}
         className="flex flex-col items-center w-full h-full bg-white rounded-tl-[120px] p-10 gap-5"
       >
-        <h1 className={title()}>Ingrese sus datos</h1>
-        <h2 className={subtitle()}>Template, contiene login y dashboard.</h2>
-
+        <div className="flex flex-col justify-center items-center w-full ml-10 gap-5">
+          <h1 className={title()}>Ingrese sus datos</h1>
+          <h2 className={subtitle()}>Template, contiene login y dashboard.</h2>
+        </div>
         <Input
           isRequired
           size="md"
